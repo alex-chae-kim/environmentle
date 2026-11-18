@@ -3,8 +3,10 @@ import { ColumnLegend } from './components/ColumnLegend'
 import { EndPanel } from './components/EndPanel'
 import { GuessCard } from './components/GuessCard'
 import { GuessInput } from './components/GuessInput'
+import { HintPanel } from './components/HintPanel'
 import { MAX_GUESSES } from './config/game'
 import { useGame } from './hooks/useGame'
+import { getHints, wrongGuessCount } from './lib/hints'
 import { scoreGuess } from './lib/score'
 import { model, nameIndex } from './model'
 
@@ -24,6 +26,8 @@ function App() {
     [state.guesses, state.answer],
   )
   const answer = model.byIso3.get(state.answer)
+  const wrong = wrongGuessCount(state)
+  const hints = useMemo(() => (answer ? getHints(answer, wrong) : null), [answer, wrong])
 
   return (
     <div className="mx-auto flex min-h-screen max-w-4xl flex-col gap-4 px-4 py-6">
@@ -36,7 +40,10 @@ function App() {
       </header>
 
       {state.status === 'playing' ? (
-        <GuessInput index={nameIndex} guessed={guessed} nameOf={nameOf} onGuess={guess} />
+        <>
+          <GuessInput index={nameIndex} guessed={guessed} nameOf={nameOf} onGuess={guess} />
+          {hints && <HintPanel hints={hints} />}
+        </>
       ) : (
         answer && (
           <EndPanel
