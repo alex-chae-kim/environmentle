@@ -46,7 +46,7 @@ RAW = ROOT / "raw"
 MANUAL = ROOT / "sources" / "manual"
 OUT = ROOT / "output"
 
-UA = {"User-Agent": "env-worldle-data-pipeline/1.0 (educational project)"}
+UA = {"User-Agent": "environmentle-data-pipeline/1.0 (educational project)"}
 
 DOWNLOADS = {
     "owid-co2-data.csv": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv",
