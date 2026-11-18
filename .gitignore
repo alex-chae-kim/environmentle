@@ -1,0 +1,24 @@
+# Data pipeline
+# Downloaded source data
+pipeline/raw/
+# Build artifacts; the app uses the committed copy in src/data/countries.json
+pipeline/output/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# ── Editors / OS ───────────────────────────────
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
